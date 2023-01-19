@@ -25,3 +25,21 @@ def editStudent(req,id):
            form.save()
            return redirect(home)
     return render(req,"edit.html",{"form":form})
+def search(req):
+    if req.method=="GET":
+        search_query=req.GET.get("search")
+        form=StudentForm()
+        data={
+            "student":Student2.objects.filter(name__icontains=search_query),
+            "form":form
+        }
+        return render(req,"index.html",data)
+def  filter(req):
+    if req.method =="GET":
+        search=req.GET.get("city")
+        form = Student2
+        data={
+            "student":Student2.objects.filter(city=search),
+            "form":form
+        }
+        return render(req,"index.html",data)

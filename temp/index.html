@@ -47,16 +47,35 @@
                 <h1 class="text-center text-warning my-3">  -: CRUD OPERATION :-  </h1>
             </div>
             <div class="col-4 mt-4">
-                <form class="d-flex" method="get" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+                <div class="row px-0">
+                    <div class="col-4">
+
+                        <form class="d-flex" action="{% url 'filter' %}"   method="get" role="search">
+                            <select name="city" onchange="this.form.submit()" class="form-control w-100 text-center mb-1 " id="">
+                                <option value="" selected default>Select</option>
+                                <option value="Purnea">Purnea</option>
+                                <option value="Patna">Patna</option>
+                                <option value="Bhagalpur">Bhagalpur</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Goa">Goa</option>
+                            </select>
+                          </form>
+
+                    </div>
+                    <div class="col-8">
+                        <form class="d-flex" action="{% url 'search' %}"  method="get" role="search">
+                            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                          </form>
+                    </div>
+                </div>
+                
             </div>
             <hr class="text-center text-warning my-3">
         </div>
         <div class="row mt-5">
             <div class="col-xl-3 col-sm-8 mx-auto sidenav">
-                <form action="" method="post" class="border border-5 border-light-subtle rounded p-3 mt-5">
+                <form action="{%url 'home'%}" method="post" class="border border-5 border-light-subtle rounded p-3 mt-5">
                     {%csrf_token%}
                     {{form.as_p}}
                     <input type="submit" class="btn mt-3 submitBtn w-100">
