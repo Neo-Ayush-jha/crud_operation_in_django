@@ -43,13 +43,12 @@
     <div class="container">
         <div class="row">
             <hr class="text-center text-warning my-3">
-            <div class="col-7">
+            <div class="col-xl-7 col-sm-10 mx-auto">
                 <h1 class="text-center text-warning my-3">  -: CRUD OPERATION :-  </h1>
             </div>
-            <div class="col-4 mt-4">
+            <div class="col-xl-4 col-sm-6 mt-4">
                 <div class="row px-0">
-                    <div class="col-4">
-
+                    <div class="col-xl-4 col-sm-8 mx-auto">
                         <form class="d-flex" action="{% url 'filter' %}"   method="get" role="search">
                             <select name="city" onchange="this.form.submit()" class="form-control w-100 text-center mb-1 " id="">
                                 <option value="" selected default>Select</option>
@@ -62,7 +61,7 @@
                           </form>
 
                     </div>
-                    <div class="col-8">
+                    <div class="col-xl-8 col-sm-12 mx-auto">
                         <form class="d-flex" action="{% url 'search' %}"  method="get" role="search">
                             <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -73,36 +72,47 @@
             </div>
             <hr class="text-center text-warning my-3">
         </div>
-        <div class="row mt-5">
-            <div class="col-xl-3 col-sm-8 mx-auto sidenav">
-                <form action="{%url 'home'%}" method="post" class="border border-5 border-light-subtle rounded p-3 mt-5">
-                    {%csrf_token%}
-                    {{form.as_p}}
-                    <input type="submit" class="btn mt-3 submitBtn w-100">
-                </form>
+        <div class="row mt-5 mx-auto">
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-xl-12 col-sm-8 mx-auto sidenav">
+                        <form action="{%url 'home'%}" method="post" class="border border-5 border-light-subtle rounded p-3 mt-5">
+                            <h1 class="display-4 text-light">Student form</h1>
+                            {%csrf_token%}
+                            {{form.as_p}}
+                            <input type="submit" class="btn mt-3 submitBtn w-100">
+                        </form>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="col-xl-9 col-sm-10 mx-auto">
-                <table class="table table-sm-small xl-px-2 border border-3 border-light-subtle rounded"  >
-                    <tr>
-                        <th class="text-light border text-center fs-4">Id</th>
-                        <th class="text-light border text-center fs-4">Name</th>
-                        <th class="text-light border text-center fs-4">Email</th>
-                        <th class="text-light border text-center fs-4">Contact</th>
-                        <th class="text-light border text-center fs-4">City</th>
-                        <th class="text-light border text-center fs-4" colspan="2">Action</th>
-                    </tr>
-                    {%for st in student%}
-                        <tr>
-                            <td class="text-light border  fs-6">{{st.id}}</td>
-                            <td class="text-light border  fs-6">{{st.name}}</td>
-                            <td class="text-light border  fs-6">{{st.email}}</td>
-                            <td class="text-light border  fs-6">{{st.contact}}</td>
-                            <td class="text-light border  fs-6">{{st.city}}</td>
-                            <td class="text-light border  fs-6"><a href="{%url 'edit' st.id%}"  class="btn btn-info ms-2">EDIT</a></td>
-                            <td class="text-light border  fs-6"><a href="{%url 'delete' st.id%}" class="btn btn-danger">Delete</a></td>
-                        </tr>
-                    {%endfor%}
-                </table>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-xl-9 col-sm-10 mx-auto">
+                        <table class="table table-sm-small xl-px-2 border border-3 border-light-subtle rounded"  >
+                            <tr>
+                                <th class="text-light border text-center fs-4">Id</th>
+                                <th class="text-light border text-center fs-4">Name</th>
+                                <th class="text-light border text-center fs-4">Email</th>
+                                <th class="text-light border text-center fs-4">Contact</th>
+                                <th class="text-light border text-center fs-4">City</th>
+                                <th class="text-light border text-center fs-4" colspan="2">Action</th>
+                            </tr>
+                            {%for st in student%}
+                                <tr>
+                                    <td class="text-light border  fs-6">{{st.id}}</td>
+                                    <td class="text-light border  fs-6">{{st.name}}</td>
+                                    <td class="text-light border  fs-6">{{st.email}}</td>
+                                    <td class="text-light border  fs-6">{{st.contact}}</td>
+                                    <td class="text-light border  fs-6">{{st.city}}</td>
+                                    <td class="text-light border  fs-6"><a href="{%url 'edit' st.id%}"  class="btn btn-info ms-2">EDIT</a></td>
+                                    <td class="text-light border  fs-6"><a href="{%url 'delete' st.id%}" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>

@@ -3,15 +3,36 @@ from .forms import *
 from .models import *
 def home(req):
     form=StudentForm(req.POST or None)
+    formT=TeacherForm(req.POST or None)
     data={
         "student":Student2.objects.all(),
-        "form":form
+        "form":form,
+        "teacher":Teacher.objects.all(),
+        "formT":formT,
     }
+    if req.method == "POST":
+       if formT.is_valid():
+           formT.save()
+           return redirect(home)
     if req.method == "POST":
        if form.is_valid():
            form.save()
            return redirect(home)
+
     return render(req,"index.html",data)
+def homeTeacher(req):
+    formT=TeacherForm(req.POST or None)
+    data={
+        "teacher":Teacher.objects.all(),
+        "formT":formT,
+    }
+    if req.method == "POST":
+       if formT.is_valid():
+           formT.save()
+           return redirect(homeTeacher)
+    
+
+    return render(req,"indexTeacher.html",data)
 def deleteF(req,id):
     student = Student2.objects.get(pk=id)
     student.delete()
